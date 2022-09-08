@@ -1,2 +1,2 @@
 # Moveanker
-Kajima　Studio　2022制作
+KajimaStudio　2022制作
