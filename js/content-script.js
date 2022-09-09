@@ -1,12 +1,8 @@
 //chrome.storage.local.clear();
 let data = {};
+
 const ankerElements = document.querySelectorAll('a');
 //console.log(ankerElements);
-
-chrome.storage.local.get(null, (result) => {
-    data = result;
-    console.log(result);
-}); 
 
 ankerElements.forEach((ankerElement)=>{
    //console.log(ankerElement);
@@ -36,6 +32,18 @@ ankerElements.forEach((ankerElement)=>{
     chrome.storage.local.set(data, function () {
         console.log('Value is set to ' , data);
     });
+
+    chrome.storage.local.get(null, (result) => {
+        data = result;
+        console.log(result);
+        for(const key in data){
+            console.log(key);
+            if(data[key].count > 5) {
+                window.location.href = key;
+                data[key].count = 0;
+            }
+        }
+    }); 
 
    };
    ankerElement.addEventListener('click', ankerFunc);
