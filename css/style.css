@@ -11,8 +11,45 @@
     background-color: gray;
     display: inline-block;
     animation: Animation1 1s ease-in 0s infinite alternate;
-    
+    z-index: 30;
 }
+
+.moveCss1{
+    color: white;
+    background-color: gray;
+    display: inline-block;
+    animation: Animation1 5s ease-in 0s infinite alternate;
+    z-index: 30;
+}
+.moveCss3{
+    color: white;
+    background-color: gray;
+    display: inline-block;
+    animation: Animation1 4s ease-in 0s infinite alternate;
+    z-index: 30;
+}
+.moveCss5{
+    color: white;
+    background-color: gray;
+    display: inline-block;
+    animation: Animation1 3s ease-in 0s infinite alternate;
+    z-index: 30;
+}
+.moveCss7{
+    color: white;
+    background-color: gray;
+    display: inline-block;
+    animation: Animation1 2s ease-in 0s infinite alternate;
+    z-index: 30;
+}
+.moveCss9{
+    color: white;
+    background-color: gray;
+    display: inline-block;
+    animation: Animation1 1s ease-in 0s infinite alternate;
+    z-index: 30;
+}
+
 
 @keyframes Animation1 {
     0% { transform: translate(-100%, 50%) scale(0.5); }

@@ -6,7 +6,7 @@ chrome.storage.local.get(null, (result) => {
     console.log(result);
     for(const key in data){
         console.log(key);
-        if(data[key].count > 4) {
+        if(data[key].count > 8) {
             data[key].count = 0;
         }
     }
@@ -19,41 +19,42 @@ ankerElements.forEach((ankerElement)=>{
    //console.log(ankerElement);
    //console.log(ankerElement.href);
    
-   //ここでのeはclickされたもの1つのこと。
+   // ここでのeはclickされたもの1つのこと。
    let ankerFunc = (e) => {
-    // オブジェクトの分割代入 const currentTarget = e.currentTargetの略
-    const { currentTarget } = e;
-    //console.log(e);
-    console.log(currentTarget);
+        // オブジェクトの分割代入 const currentTarget = e.currentTargetの略
+        const { currentTarget } = e;
+        //console.log(e);
+        //console.log(currentTarget);
 
-    // preventDefaultはEventにくっつける
-    e.preventDefault();
+        // preventDefaultはEventにくっつける
+        e.preventDefault();
 
-    console.log('イベントが起きた');
-    currentTarget.classList.add('overCss2');
-    currentTarget.style.zIndex = '30';
+        console.log('イベントが起きた');
 
-    const url =currentTarget.href;
-    if(data.hasOwnProperty(url)){
-     data[url].count += 1;
-    } else {
-        data[url] = {};
-        data[url].count = 1;
-    }
-    chrome.storage.local.set(data, function () {
-        console.log('Value is set to ' , data);
-    });
-
-   for(const key in data){
-            console.log(key);
-            if(data[key].count > 4) {
-                window.location.href = key;
-            }
-    }
-
+        const url =currentTarget.href;
+        if(data.hasOwnProperty(url) && data[url].count > 0){
+            currentTarget.classList.remove(`moveCss${data[url].count}`);
+            data[url].count += 1;
+            currentTarget.classList.add(`moveCss${data[url].count}`);
+        } else if(data.hasOwnProperty(url) && data[url].count === 0){
+            currentTarget.classList.remove('moveCss9');
+            currentTarget.classList.add('moveCss1');
+            data[url].count += 1;
+        } else {
+            currentTarget.classList.add('moveCss1');
+            data[url] = {};
+            data[url].count = 1;
+        }
+        chrome.storage.local.set(data, () => {
+            console.log('Value is set to ' , data);
+        });
+        
+        currentTarget.addEventListener('click', () => {
+            window.location.href = currentTarget;
+        });
+  
    };
-   ankerElement.addEventListener('click', ankerFunc);
-
+    ankerElement.addEventListener('click', ankerFunc);
 });
 
 window.onpageshow = (event) => {
