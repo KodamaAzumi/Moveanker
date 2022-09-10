@@ -14,7 +14,6 @@
     z-index: 30;
 }
 
-
 .moveCss1{
     color: white;
     background-color: gray;
@@ -22,66 +21,30 @@
     animation: Animation1 5s ease-in 0s infinite alternate;
     z-index: 30;
 }
-.moveCss3{
+.moveCss2{
     color: white;
-    background-color: gray;
+    background-color: red;
     display: inline-block;
     animation: Animation1 4s ease-in 0s infinite alternate;
     z-index: 30;
 }
-.moveCss5{
+.moveCss3{
     color: white;
-    background-color: gray;
+    background-color: blue;
     display: inline-block;
     animation: Animation1 3s ease-in 0s infinite alternate;
-    z-index: 30;
-}
-.moveCss7{
-    color: white;
-    background-color: gray;
-    display: inline-block;
-    animation: Animation1 2s ease-in 0s infinite alternate;
-    z-index: 30;
-}
-.moveCss9{
-    color: white;
-    background-color: gray;
-    display: inline-block;
-    animation: Animation1 1s ease-in 0s infinite alternate;
-    z-index: 30;
-}
-
-.moveCss2{
-    color: white;
-    background-color: gray;
-    display: inline-block;
-    animation: Animation1 5s ease-in 0s infinite alternate;
     z-index: 30;
 }
 .moveCss4{
     color: white;
-    background-color: gray;
-    display: inline-block;
-    animation: Animation1 4s ease-in 0s infinite alternate;
-    z-index: 30;
-}
-.moveCss6{
-    color: white;
-    background-color: gray;
-    display: inline-block;
-    animation: Animation1 3s ease-in 0s infinite alternate;
-    z-index: 30;
-}
-.moveCss8{
-    color: white;
-    background-color: gray;
+    background-color: yellow;
     display: inline-block;
     animation: Animation1 2s ease-in 0s infinite alternate;
     z-index: 30;
 }
-.moveCss10{
+.moveCss5{
     color: white;
-    background-color: gray;
+    background-color: green;
     display: inline-block;
     animation: Animation1 1s ease-in 0s infinite alternate;
     z-index: 30;

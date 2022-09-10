@@ -6,7 +6,7 @@ chrome.storage.local.get(null, (result) => {
     console.log(result);
     for(const key in data){
         console.log(key);
-        if(data[key].count > 8) {
+        if(data[key].count > 4) {
             data[key].count = 0;
         }
     }
@@ -34,22 +34,27 @@ ankerElements.forEach((ankerElement)=>{
         const url =currentTarget.href;
         if(data.hasOwnProperty(url) && data[url].count > 0){
             currentTarget.classList.remove(`moveCss${data[url].count}`);
-            data[url].count += 1;
-            currentTarget.classList.add(`moveCss${data[url].count}`);
+            currentTarget.classList.add(`moveCss${data[url].count + 1}`);
         } else if(data.hasOwnProperty(url) && data[url].count === 0){
-            currentTarget.classList.remove('moveCss9');
+            currentTarget.classList.remove('moveCss5');
             currentTarget.classList.add('moveCss1');
-            data[url].count += 1;
         } else {
             currentTarget.classList.add('moveCss1');
-            data[url] = {};
-            data[url].count = 1;
         }
-        chrome.storage.local.set(data, () => {
-            console.log('Value is set to ' , data);
-        });
         
-        currentTarget.addEventListener('click', () => {
+        currentTarget.addEventListener('click', (e) => {
+            e.preventDefault();
+            if(data.hasOwnProperty(url) && data[url].count > 0){
+                data[url].count += 1;
+            } else if(data.hasOwnProperty(url) && data[url].count === 0){
+                data[url].count += 1;
+            } else {
+                data[url] = {};
+                data[url].count = 1;
+            }
+            chrome.storage.local.set(data, () => {
+                console.log('Value is set to ' , data);
+            });
             window.location.href = currentTarget;
         });
   
