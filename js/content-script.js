@@ -1,6 +1,17 @@
 //chrome.storage.local.clear();
 let data = {};
 
+chrome.storage.local.get(null, (result) => {
+    data = result;
+    console.log(result);
+    for(const key in data){
+        console.log(key);
+        if(data[key].count > 4) {
+            data[key].count = 0;
+        }
+    }
+});
+
 const ankerElements = document.querySelectorAll('a');
 //console.log(ankerElements);
 
@@ -33,22 +44,23 @@ ankerElements.forEach((ankerElement)=>{
         console.log('Value is set to ' , data);
     });
 
-    chrome.storage.local.get(null, (result) => {
-        data = result;
-        console.log(result);
-        for(const key in data){
+   for(const key in data){
             console.log(key);
-            if(data[key].count > 5) {
+            if(data[key].count > 4) {
                 window.location.href = key;
-                data[key].count = 0;
             }
-        }
-    }); 
+    }
 
    };
    ankerElement.addEventListener('click', ankerFunc);
 
 });
+
+window.onpageshow = (event) => {
+	if (event.persisted) {
+		 window.location.reload();
+	}
+};
 
 /*
 // popup.jsからメッセージを受け取る
