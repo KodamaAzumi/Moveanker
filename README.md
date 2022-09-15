@@ -1,2 +1,2 @@
 # Moveanker
-KajimaStudio　2022制作
+KajimaStudio2022制作　リンクをクリックするとリンクが逃げるGoogleChrome拡張機能
