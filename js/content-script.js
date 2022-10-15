@@ -68,17 +68,6 @@ window.onpageshow = (event) => {
 	}
 };
 
-/*
-// popup.jsからメッセージを受け取る
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    console.log(`送られてきたデータ : ${message}`);
-    // 以下のconsole.logはpopup.jsのconsoleに表示される。
-    sendResponse('メッセージを受け取りました');
-    console.log(sender);
-    return true
-});
-*/
-
 // データを計測するためのコード
 const tick = (() => {
     const interval = 10000;
