@@ -4,15 +4,27 @@ let data = {};
 chrome.storage.local.get(null, (result) => {
     data = result;
     console.log(result);
-    for(const key in data){
-        console.log(key);
-        if(data[key].count > 4) {
-            data[key].count = 0;
-        }
+    for (const key in data) {
+        //console.log(key);
+        if (data.hasOwnProperty(key)) {
+            if (data[key].count > 4) {
+                data[key].count = 0;
+            }
+            const keyElms = document.querySelectorAll(`a[href="${key}"]`);
+            keyElms.forEach((keyElm) => {
+                if(keyElm && data[key].count > 0){
+                    keyElm.classList.remove(`moveCss${data[key].count}`);
+                    keyElm.classList.add(`moveCss${data[key].count + 1}`);
+                } else if(keyElm && data[key].count === 0){
+                    keyElm.classList.remove('moveCss5');
+                    keyElm.classList.add('moveCss1');
+                } 
+            });
+        } 
     }
 });
 
-const ankerElements = document.querySelectorAll('a');
+const ankerElements = document.querySelectorAll('a:not([href=""])');
 //console.log(ankerElements);
 
 ankerElements.forEach((ankerElement)=>{
@@ -32,32 +44,20 @@ ankerElements.forEach((ankerElement)=>{
         console.log('イベントが起きた');
 
         const url =currentTarget.href;
-        if(data.hasOwnProperty(url) && data[url].count > 0){
-            currentTarget.classList.remove(`moveCss${data[url].count}`);
-            currentTarget.classList.add(`moveCss${data[url].count + 1}`);
-        } else if(data.hasOwnProperty(url) && data[url].count === 0){
-            currentTarget.classList.remove('moveCss5');
+        if (!data.hasOwnProperty(url)) {
             currentTarget.classList.add('moveCss1');
-        } else {
-            currentTarget.classList.add('moveCss1');
-        }
-        
-        currentTarget.addEventListener('click', (e) => {
-            e.preventDefault();
-            if(data.hasOwnProperty(url) && data[url].count > 0){
-                data[url].count += 1;
-            } else if(data.hasOwnProperty(url) && data[url].count === 0){
-                data[url].count += 1;
-            } else {
-                data[url] = {};
-                data[url].count = 1;
-            }
-            chrome.storage.local.set(data, () => {
-                console.log('Value is set to ' , data);
-            });
+            data[url] = {};
+            data[url].count = 0;
+        } else if (data.hasOwnProperty(url) && data[url].count > 0) {
+            data[url].count += 1;
             window.location.href = currentTarget;
+        } else if (data.hasOwnProperty(url) && data[url].count === 0) {
+            data[url].count += 1;
+            window.location.href = currentTarget;
+        } 
+        chrome.storage.local.set(data, () => {
+            console.log('Value is set to ' , data);
         });
-  
    };
     ankerElement.addEventListener('click', ankerFunc);
 });
