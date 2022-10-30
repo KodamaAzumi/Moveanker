@@ -45,9 +45,9 @@ ankerElements.forEach((ankerElement)=>{
 
         const url =currentTarget.href;
         if (!data.hasOwnProperty(url)) {
-            currentTarget.classList.add('moveCss1');
             data[url] = {};
             data[url].count = 0;
+            window.location.href = currentTarget;
         } else if (data.hasOwnProperty(url) && data[url].count > 0) {
             data[url].count += 1;
             window.location.href = currentTarget;
