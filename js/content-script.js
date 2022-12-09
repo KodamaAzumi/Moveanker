@@ -69,6 +69,7 @@ window.onpageshow = (event) => {
 };
 
 // 使用時間を計測するためのコード
+/*
 function uuidv4() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
         var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
@@ -102,12 +103,15 @@ const tick = (() => {
   })();
   
   requestAnimationFrame(tick);
+*/
 
 // 拡張機能を読み込んだ回数、ページ閲覧数を計測するためのコード
+/*
 const body = `<img class="sw-hidden" src="https://nanalytics.ga/no-cache/kodama/moveanker/page-view-0.png?r=${uuidv4()}">`;
 const elem = document.getElementsByTagName('body')[0];
 elem.insertAdjacentHTML('afterbegin', body);
 console.log(elem.innerHTML);
+*/
 
 
 
